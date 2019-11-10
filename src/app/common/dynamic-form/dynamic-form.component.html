@@ -1,0 +1,14 @@
+<div>
+	<form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+		<app-dynamic-form-element *ngFor="let question of questions" [question]="question" [form]="form">
+		</app-dynamic-form-element>
+
+		<button type="submit" [disabled]="!form.valid" class="btn btn-success">{{btnLabel}}</button>
+	</form>
+
+	<div *ngIf="debug" class="form-row">
+		<strong>Form values</strong>
+		<br><br>{{payLoad}}
+	</div>
+</div>

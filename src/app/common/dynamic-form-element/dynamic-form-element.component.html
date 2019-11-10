@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+
+    <div [ngSwitch]="question.controlType" class="form-group">
+
+        <ng-container *ngSwitchCase="'textInput'">
+            <label *ngIf="!question.labelBefore" [attr.for]="question.key">{{question.label}}</label>
+            <input [class]="question.className" [formControlName]="question.key" [id]="question.key"
+                [type]="question.type">
+            <label *ngIf="question.labelBefore" [attr.for]="question.key">{{question.label}}</label>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'numberInput'">
+            <label *ngIf="!question.labelBefore" [attr.for]="question.key">{{question.label}}</label>
+            <input [class]="question.className" [formControlName]="question.key" [id]="question.key"
+                [type]="question.type" [max]="question.max" [min]="question.min" [step]="question.step">
+            <label *ngIf="question.labelBefore" [attr.for]="question.key">{{question.label}}</label>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'radio'">
+            <label *ngFor="let opt of question.options">
+                {{opt.key}}
+                <input type="radio" [name]="question.key" [formControlName]="question.key" [value]="opt.value" 
+                [checked]="opt.value" >
+            </label>
+        </ng-container>
+
+    </div>
+    <div class="errorMessage text-danger" *ngIf="!isValid && isTouched ">{{question.label}} is required</div>
+</div>
