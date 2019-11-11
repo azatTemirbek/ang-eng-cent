@@ -23,7 +23,7 @@ export class ManualOverrideComponent {
    */
   result(e:{x:number,y:number,set_to:boolean}) {
     if(!!e.x && !!e.y){
-      this.stateHolderService.update(e.x,e.y,e.set_to)
+      this.stateHolderService.update(e.y,e.x,e.set_to)
     }
   }
 

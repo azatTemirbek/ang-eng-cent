@@ -33,7 +33,7 @@ export class DynamicFormComponent implements OnInit {
     this.payLoad = JSON.stringify(this.form.value);
     if (this.form.status == 'VALID') {
       this.result.emit(this.form.value);
+      this.form.reset()
     }
   }
-
 }
