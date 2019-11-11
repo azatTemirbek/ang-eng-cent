@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from './question.service';
-import { QuestionBase } from '../../common/qs/question-base';
+import { QuestionBase } from '../../common/form-elements/question-base';
+import { StateHolderService } from 'src/app/State/stateHolder.service';
 
 @Component({
   selector: 'app-manual-override',
@@ -8,22 +9,22 @@ import { QuestionBase } from '../../common/qs/question-base';
   styleUrls: ['./manual-override.component.css'],
   providers: [QuestionService]
 })
-export class ManualOverrideComponent implements OnInit {
+export class ManualOverrideComponent {
   questions: QuestionBase<any>[];
 
-  constructor(private Qservice: QuestionService) {
-    this.questions = this.Qservice.getQuestions();
-    console.log(this.questions)
-  }
-
-  ngOnInit() {
+  constructor(private questionService: QuestionService,public stateHolderService: StateHolderService) {
+    this.questionService.x = this.stateHolderService.xVal.getValue();
+    this.questionService.y = this.stateHolderService.yVal.getValue();
+    this.questions = this.questionService.getQuestions();
   }
   /**
    * will get result of the form and i will manually validate
    * @param e will get result of the form
    */
-  result(e) {
-    console.log(e);
+  result(e:{x:number,y:number,set_to:boolean}) {
+    if(!!e.x && !!e.y){
+      this.stateHolderService.update(e.x,e.y,e.set_to)
+    }
   }
 
 }

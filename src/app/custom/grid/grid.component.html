@@ -1,0 +1,14 @@
+<div *ngFor="let row of data; let i = index" class="row" [attr.data-index]="i" >
+  <span class="text-muted text-center my-auto mx-1">
+      {{data.length-i}}
+  </span>
+    <div *ngFor="let col of row ; let j = index" class="col text-center p-1" [attr.data-index]="i" >
+        <button class="btn btn-primary text-center btn-block m-1 btn-lg" (click)="onClick(i,j,col)" >{{col}}</button>
+    </div>
+</div>
+<div  class="row"  >
+  <div class="col text-center text-muted" *ngFor="let col of data[0]; let k = index" [attr.data-index]="k">
+    {{k+1}}
+  </div>
+</div>
+

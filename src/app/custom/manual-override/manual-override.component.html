@@ -1,4 +1,7 @@
-<div>
-    <h1>Manula Override</h1>
-    <app-dynamic-form [btnLabel]="'Confirm'" [debug]="false" [questions]="questions" ></app-dynamic-form>
+<div class="card">
+    <div class="card-body">
+        <h3>Manula Override</h3>
+        <app-dynamic-form (result)="result($event)" [btnLabel]="'Confirm'" [debug]="false" [questions]="questions">
+        </app-dynamic-form>
+    </div>
 </div>

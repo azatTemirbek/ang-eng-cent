@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { QuestionBase } from '../../common/qs/question-base';
-import { NumberInput } from '../../common/qs/number-input';
+import { QuestionBase } from '../../common/form-elements/question-base';
+import { NumberInput } from '../../common/form-elements/number-input';
+/** https://angular.io/api/forms/Validators */
 import { Validators } from '@angular/forms';
-import { forbiddenNameValidator } from './forbidden-name.validator';
-import { RadioInput } from 'src/app/common/qs/radio-input';
+import { RadioInput } from 'src/app/common/form-elements/radio-input';
 
 
 @Injectable()
@@ -11,28 +11,26 @@ export class QuestionService {
   x: number;
   y: number;
   constructor() {}
-  setXY(x: number, y: number) {
-    this.x = x;
-    this.y = y;
-  }
   getQuestions() {
     let questions: QuestionBase<any>[] = [
       new NumberInput({
         key: 'x',
-        label: 'x',
+        label: 'X:',
         order: 1,
         validators: [
           Validators.required,
-          Validators.maxLength(this.x),
+          Validators.max(this.x),
+          Validators.min(0),
         ]
       }),
       new NumberInput({
         key: 'y',
-        label: 'Y',
+        label: 'Y:',
         order: 2,
         validators: [
           Validators.required,
-          Validators.maxLength(this.y),
+          Validators.max(this.y),
+          Validators.min(0),
         ]
       }),
       new RadioInput({

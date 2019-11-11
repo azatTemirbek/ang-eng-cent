@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { QuestionBase } from '../qs/question-base';
-import { QuestionControlService } from '../qs/question-control.service';
+import { QuestionBase } from '../form-elements/question-base';
+import { QuestionControlService } from '../question-control.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -30,10 +30,9 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form)
     this.payLoad = JSON.stringify(this.form.value);
     if (this.form.status == 'VALID') {
-      this.result.emit(this.payLoad);
+      this.result.emit(this.form.value);
     }
   }
 
